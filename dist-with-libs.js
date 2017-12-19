@@ -13375,6 +13375,10 @@ module.exports = function getVoices(options) {
 
 
 
+var input = document.createElement("input");
+input.setAttribute('type', 'text');
+input.setAttribute('id', 'output');
+document.getElementsByTagName('body')[0].appendChild(input);
 
 
 
@@ -13488,10 +13492,8 @@ function parseAudio(b, contactId) {
 
     stream.on('data', function(data) {
         try{
-            console.log(data.results[0])
             if (data.results && data.results.length > 0 && data.results[0].final && data.results[0].alternatives[0].transcript) {
                 var text = data.results[0].alternatives[0].transcript;
-                // console.log(text);
                 console.log('audiosBuffer', contactId, text);
                 audiosBuffer[contactId] = {
                     text : text,
